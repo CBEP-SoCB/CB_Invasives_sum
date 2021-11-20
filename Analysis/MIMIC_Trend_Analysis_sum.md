@@ -14,7 +14,7 @@ Curtis C. Bohlen, Casco Bay Estuary Partnership
 -   [Analyzing Sampling Effort](#analyzing-sampling-effort)
 -   [Trend Data](#trend-data)
 -   [Analysis Pricipals](#analysis-pricipals)
--   [Presence / Absence](#presence-absence)
+-   [Presence / Absence](#presence--absence)
     -   [Trend Data](#trend-data-1)
         -   [Preliminary Graphic](#preliminary-graphic)
         -   [Binomial Models](#binomial-models)
@@ -53,11 +53,11 @@ the number of site visits each year.
 
 ``` r
 library(tidyverse)
-#> -- Attaching packages --------------------------------------- tidyverse 1.3.0 --
-#> v ggplot2 3.3.3     v purrr   0.3.4
-#> v tibble  3.0.5     v dplyr   1.0.3
-#> v tidyr   1.1.2     v stringr 1.4.0
-#> v readr   1.4.0     v forcats 0.5.0
+#> -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+#> v ggplot2 3.3.5     v purrr   0.3.4
+#> v tibble  3.1.6     v dplyr   1.0.7
+#> v tidyr   1.1.4     v stringr 1.4.0
+#> v readr   2.1.0     v forcats 0.5.1
 #> -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 #> x dplyr::filter() masks stats::filter()
 #> x dplyr::lag()    masks stats::lag()
@@ -74,15 +74,7 @@ library(VGAM)
 library(emmeans)
 #library(readr)
 
-library(GGally)
-#> Registered S3 method overwritten by 'GGally':
-#>   method from   
-#>   +.gg   ggplot2
-#> 
-#> Attaching package: 'GGally'
-#> The following object is masked from 'package:emmeans':
-#> 
-#>     pigs
+#library(GGally)
 #library(zoo)
 #library(lubridate)  # here, for the make_datetime() function
 
@@ -96,7 +88,7 @@ theme_set(theme_cbep())
 ## Establish Folder Reference
 
 ``` r
-sibfldnm <- 'Derived_Data'
+sibfldnm <- 'Data'
 parent   <- dirname(getwd())
 sibling  <- file.path(parent,sibfldnm)
 #dir.create(file.path(getwd(), 'figures'), showWarnings = FALSE)
@@ -112,7 +104,6 @@ abundance_data <- read_csv(file.path(sibling, fn),
                              Site = col_character(),
                              Type = col_character(),
                              City = col_character(),
-                             State = col_character(),
                              Salinity = col_double(),
                              Temp = col_double(),
                              Month = col_character(),
@@ -126,7 +117,6 @@ abundance_data <- read_csv(file.path(sibling, fn),
          Month = factor(Month, levels = month.abb),
          Abundance = ordered(Abundance, levels = c('Absent', 'Rare', 'Few', 
                                                    'Common', 'Abundant')))
-#> Warning: The following named parsers don't match the column names: State
 
 fn <- 'Presence_Data.csv'
 presence_data <- read_csv(file.path(sibling, fn),
@@ -135,7 +125,6 @@ presence_data <- read_csv(file.path(sibling, fn),
                              Site = col_character(),
                              Type = col_character(),
                              City = col_character(),
-                             State = col_character(),
                              Salinity = col_double(),
                              Temp = col_double(),
                              Month = col_character(),
@@ -147,7 +136,6 @@ presence_data <- read_csv(file.path(sibling, fn),
                            )) %>%
   mutate(Type  = factor(Type, levels = c('Dock', 'Tidepool')),
          Month = factor(Month, levels = month.abb))
-#> Warning: The following named parsers don't match the column names: State
 ```
 
 # Convert to Factors for Display Order
@@ -257,21 +245,21 @@ site_visits %>%
 #> `summarise()` has grouped output by 'Site'. You can override using the `.groups` argument.
 #> # A tibble: 12 x 14
 #> # Groups:   Site [12]
-#>    Site  `2008` `2009` `2010` `2011` `2012` `2013` `2014` `2015` `2016` `2017`
-#>    <chr>  <int>  <int>  <int>  <int>  <int>  <int>  <int>  <int>  <int>  <int>
-#>  1 Chan~     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA
-#>  2 Cheb~     NA     NA     NA     NA     NA     NA      5      3      2      4
-#>  3 Fowl~     NA     NA     NA     NA     NA     NA     NA     NA      2      3
-#>  4 Grea~     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA
-#>  5 Grea~     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA
-#>  6 Long~     NA     NA     NA     NA     NA     NA     NA      1      1     NA
-#>  7 Peak~     NA     NA     NA     NA     NA     NA      4      4      3      1
-#>  8 Peak~     NA     NA     NA     NA     NA     NA      1      2      4      2
-#>  9 Sieg~     NA      3      3      5      4      3      2      3      1      1
-#> 10 SMCC~      2      4      3      5      3      2      2      4     NA     NA
-#> 11 Spri~     NA     NA     NA     NA     NA     NA     NA     NA     NA      3
-#> 12 Wald~     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA
-#> # ... with 3 more variables: `2018` <int>, `2019` <int>, `2020` <int>
+#>    Site    `2008` `2009` `2010` `2011` `2012` `2013` `2014` `2015` `2016` `2017`
+#>    <chr>    <int>  <int>  <int>  <int>  <int>  <int>  <int>  <int>  <int>  <int>
+#>  1 Chandl~     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA
+#>  2 Chebea~     NA     NA     NA     NA     NA     NA      5      3      2      4
+#>  3 Fowler~     NA     NA     NA     NA     NA     NA     NA     NA      2      3
+#>  4 Great ~     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA
+#>  5 Great ~     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA
+#>  6 Long I~     NA     NA     NA     NA     NA     NA     NA      1      1     NA
+#>  7 Peaks ~     NA     NA     NA     NA     NA     NA      4      4      3      1
+#>  8 Peaks ~     NA     NA     NA     NA     NA     NA      1      2      4      2
+#>  9 Siegel~     NA      3      3      5      4      3      2      3      1      1
+#> 10 SMCC D~      2      4      3      5      3      2      2      4     NA     NA
+#> 11 Spring~     NA     NA     NA     NA     NA     NA     NA     NA     NA      3
+#> 12 Waldo ~     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA
+#> # ... with 3 more variables: 2018 <int>, 2019 <int>, 2020 <int>
 ```
 
 So…
@@ -359,7 +347,7 @@ tmp <- trend_presence_data %>%
 tmp
 #> # A tibble: 378 x 5
 #>     Year Site      Species                site_visits frequency
-#>  * <int> <chr>     <chr>                        <int>     <dbl>
+#>    <int> <chr>     <chr>                        <int>     <dbl>
 #>  1  2008 SMCC Dock Ascidiella aspersa               2       0  
 #>  2  2008 SMCC Dock Botrylloides violaceus           2       1  
 #>  3  2008 SMCC Dock Botryllus schlosseri             2       0.5
@@ -384,7 +372,7 @@ ggplot(tmp, aes(Year, frequency)) +
   theme(strip.text = element_text(size = 7))
 ```
 
-<img src="MIMIC_Trend_Analysis_files/figure-gfm/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+<img src="MIMIC_Trend_Analysis_sum_files/figure-gfm/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
 That reveals what look like increases in abundance for six species at
 these two long-term sites: *Caprella mutica*, *Didemnum vexillum*,
@@ -453,7 +441,7 @@ That also suggests the probability of observing *Caprella* has
 increased.
 
 We can abuse the `emmeans()` function slightly to generate predicted
-probabilities of observing *Caprella* on a ny give nsite visit at one of
+probabilities of observing *Caprella* on any given site visit at one of
 these two sites.
 
 ``` r
@@ -467,7 +455,7 @@ plot(emms) +
   coord_flip()
 ```
 
-<img src="MIMIC_Trend_Analysis_files/figure-gfm/unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
+<img src="MIMIC_Trend_Analysis_sum_files/figure-gfm/unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
 
 #### Construct Nested Tibble
 
@@ -705,21 +693,21 @@ tmp <- trend_abundance_data %>%
 #> * Common -> Common...18
 tmp
 #> # A tibble: 1,216 x 19
-#>    Date                Site  Type  City  Salinity  Temp Month  Year Where
-#>    <dttm>              <chr> <fct> <chr>    <dbl> <dbl> <fct> <int> <fct>
-#>  1 2008-07-18 00:00:00 SMCC~ Dock  Sout~       29    18 Jul    2008 Main~
-#>  2 2008-07-18 00:00:00 SMCC~ Dock  Sout~       29    18 Jul    2008 Main~
-#>  3 2008-07-18 00:00:00 SMCC~ Dock  Sout~       29    18 Jul    2008 Main~
-#>  4 2008-07-18 00:00:00 SMCC~ Dock  Sout~       29    18 Jul    2008 Main~
-#>  5 2008-07-18 00:00:00 SMCC~ Dock  Sout~       29    18 Jul    2008 Main~
-#>  6 2008-07-18 00:00:00 SMCC~ Dock  Sout~       29    18 Jul    2008 Main~
-#>  7 2008-07-18 00:00:00 SMCC~ Dock  Sout~       29    18 Jul    2008 Main~
-#>  8 2008-07-18 00:00:00 SMCC~ Dock  Sout~       29    18 Jul    2008 Main~
-#>  9 2008-07-18 00:00:00 SMCC~ Dock  Sout~       29    18 Jul    2008 Main~
-#> 10 2008-07-18 00:00:00 SMCC~ Dock  Sout~       29    18 Jul    2008 Main~
+#>    Date                Site      Type  City     Salinity  Temp Month  Year Where
+#>    <dttm>              <chr>     <fct> <chr>       <dbl> <dbl> <fct> <int> <fct>
+#>  1 2008-07-18 00:00:00 SMCC Dock Dock  South P~       29    18 Jul    2008 Main~
+#>  2 2008-07-18 00:00:00 SMCC Dock Dock  South P~       29    18 Jul    2008 Main~
+#>  3 2008-07-18 00:00:00 SMCC Dock Dock  South P~       29    18 Jul    2008 Main~
+#>  4 2008-07-18 00:00:00 SMCC Dock Dock  South P~       29    18 Jul    2008 Main~
+#>  5 2008-07-18 00:00:00 SMCC Dock Dock  South P~       29    18 Jul    2008 Main~
+#>  6 2008-07-18 00:00:00 SMCC Dock Dock  South P~       29    18 Jul    2008 Main~
+#>  7 2008-07-18 00:00:00 SMCC Dock Dock  South P~       29    18 Jul    2008 Main~
+#>  8 2008-07-18 00:00:00 SMCC Dock Dock  South P~       29    18 Jul    2008 Main~
+#>  9 2008-07-18 00:00:00 SMCC Dock Dock  South P~       29    18 Jul    2008 Main~
+#> 10 2008-07-18 00:00:00 SMCC Dock Dock  South P~       29    18 Jul    2008 Main~
 #> # ... with 1,206 more rows, and 10 more variables: Species <chr>,
 #> #   Common_Name <chr>, Order <dbl>, Label <chr>, Absent <dbl>, Rare <dbl>,
-#> #   Few <dbl>, Common <dbl>, Abundant <dbl>, `NA` <dbl>
+#> #   Few <dbl>, Common <dbl>, Abundant <dbl>, NA <dbl>
 ```
 
 ``` r
@@ -787,7 +775,7 @@ tmp
   theme(strip.text = element_text(size = 7))
 ```
 
-<img src="MIMIC_Trend_Analysis_files/figure-gfm/unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
+<img src="MIMIC_Trend_Analysis_sum_files/figure-gfm/unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
 
 # Multinomial Models
 
@@ -869,7 +857,7 @@ t@Body$`Pr(>Chisq)`[2]
 ```
 
 I ran into problems calling `lrtest()` from within the nested tibble, so
-we return to pulling significnace tests for the coefficients from the
+we return to pulling significance tests for the coefficients from the
 model summary.
 
 ``` r

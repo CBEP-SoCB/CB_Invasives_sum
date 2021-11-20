@@ -48,7 +48,7 @@ library(VGAM)
 library(emmeans)
 #library(readr)
 
-library(GGally)
+#library(GGally)
 #library(zoo)
 #library(lubridate)  # here, for the make_datetime() function
 
@@ -61,7 +61,7 @@ theme_set(theme_cbep())
 # Load Data
 ## Establish Folder Reference
 ```{r folder_refs}
-sibfldnm <- 'Derived_Data'
+sibfldnm <- 'Data'
 parent   <- dirname(getwd())
 sibling  <- file.path(parent,sibfldnm)
 #dir.create(file.path(getwd(), 'figures'), showWarnings = FALSE)
@@ -76,7 +76,6 @@ abundance_data <- read_csv(file.path(sibling, fn),
                              Site = col_character(),
                              Type = col_character(),
                              City = col_character(),
-                             State = col_character(),
                              Salinity = col_double(),
                              Temp = col_double(),
                              Month = col_character(),
@@ -98,7 +97,6 @@ presence_data <- read_csv(file.path(sibling, fn),
                              Site = col_character(),
                              Type = col_character(),
                              City = col_character(),
-                             State = col_character(),
                              Salinity = col_double(),
                              Temp = col_double(),
                              Month = col_character(),
@@ -254,7 +252,6 @@ some sites have been tracked for only a few years. We probably need to develop
 parallel analyses, using both data from the two sites tracked long enough to
 examine trends and all data from all sites. 
 
-
 # Analysis Pricipals
 We have to be a bit careful here about interpreting these data, because of 
 varying annual effort. We need to make sure we are scaling analyses by effort.
@@ -336,7 +333,6 @@ summary(test_glm)
 So that suggests the probability of Observing *Styela* has increased.
 
 
-
 ```{r}
 test_glm <- glm(Present ~ Year, family = binomial(), 
                 data = presence_data, subset = Species == 'Caprella mutica')
@@ -344,9 +340,8 @@ as_tibble(summary(test_glm)$coefficients)
 ```
 That also suggests the probability of observing *Caprella* has increased.
 
-
 We can abuse the `emmeans()` function slightly to generate predicted 
-probabilities of observing *Caprella* on a ny give nsite visit at one of these
+probabilities of observing *Caprella* on any given site visit at one of these
 two sites.
 ```{r}
 emms <- emmeans(test_glm, 'Year', at = list(Year = 2008:2020), type = 'response')
@@ -524,7 +519,7 @@ t@Body$`Pr(>Chisq)`[2]
 ```
 
 I  ran into problems calling  `lrtest()` from within the nested tibble, so we 
-return to pulling significnace tests for the coefficients from the model 
+return to pulling significance tests for the coefficients from the model 
 summary.
 
 
@@ -535,7 +530,6 @@ summary(test.vglm)@coef3
 ```{r}
 summary(test.vglm)@coef3['Year', 'Pr(>|z|)']
 ```
-
 
 #### Construct Nested Tibble
 ```{r}
@@ -563,7 +557,6 @@ nested_abundance <- nested_abundance %>%
          vglm_p     = map(year_vglm,
                           function(mod) summary(mod)@coef3['Year', 'Pr(>|z|)']))
 ```
-
 
 #### Examine Results
 ```{r}
