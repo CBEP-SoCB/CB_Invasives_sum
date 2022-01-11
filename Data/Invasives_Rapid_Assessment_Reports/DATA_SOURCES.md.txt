@@ -1,6 +1,48 @@
-The PDF reports were downloaded from the Massachusetts Coastal Program web site by Curtis C> Bohlen, on
-February 16, 2020.  
+The PDF reports were downloaded from the Massachusetts Coastal Program web site 
+on February 16, 2020.  Full Citations as follows:
 
-The Word document reporting on the 2007 RAS survey was archived in CBEP's 2015 State of the Bay Data Archive.
+>  Judith Pederson, Robert Bullock, James Carlton, Jennifer Dijkstra, Nicole 
+   Dobroski, Peter Dyrynda, Ryan Fisher, Larry Harris, Niels Hobbs, Gretchen 
+   Lambert, Eric Lazo-Wasem, Arthur Mathieson, Maria-Pia Miglietta, Jan Smith, 
+   Julian Smith III, and Megan Tyrrell. 2005. Marine Invaders in the Northeast: 
+   Rapid assessment survey of non-native and native marine species of floating
+   dock communities, August 2003. MIT Sea Grant College Program, Cambridge, 
+   Massachusetts. 
+ 
+>  Kennedy C., Pappal A.L., Bastidas C., Carlton J.T., David A.A, Dijkstra J.A., 
+   Duffey S., Gibson J., Grady S.P., Green-Gavrielidis L.A., Harris L.G., 
+   Hobbs N.V., Mauk A., McCuller M., Neefus C., O’Brien B., Osborne K., 
+   Pederson J., Robidoux J., Tyler M., and Van Volkom K. 2020. Report on the 
+   2018 Rapid Assessment Survey of Introduced, Cryptogenic, and Native Marine 
+   Species at New England Marinas: Massachusetts to Maine. Commonwealth of 
+   Massachusetts, Executive Office of Energy and Environmental Affairs, Office 
+   of Coastal Zone Management, Boston, MA. 30 pp. 
+   https://www.mass.gov/files/documents/2020/07/22/ras-2018-report-final.pdf 
+ 
+>  Wells C., Pappal A.L., Cao Y., Carlton J.T., Curimjee Z., Dijkstra J.A., 
+   Edquist S.K., Gittenberger A., Goodnight S., Grady S.P., Green L.A., 
+   Harris L.G., Harris L.H., Hobbs N.V., Lambert G., Marques A., Mathieson A.C., 
+   McCuller M.I., Osborne K., Pederson J.A., Ros M., Smith J.P., Stefaniak L.M., 
+   Stevens A.(2014). Report on the 2013 rapid assessment survey of marine 
+   species at New England bays and harbors. Report on the 2018 Rapid Assessment 
+   Survey of Introduced, Cryptogenic, and Native Marine Species at New England 
+   Marinas: Massachusetts to Maine. Massachusetts Office of Coastal Zone 
+   Management.
+   https://www.mass.gov/files/documents/2016/08/vd/ras-2013-final.pdf 
+ 
+>  McIntyre C.M., Pappal A.L., Bryant J., Carlton J.T., Cute K., Dijkstra J., 
+   Erickson R., Garner Y., Gittenberger A., Grady S.P., Haram L., Harris L., 
+   Hobbs N.V., Lambert C.C., Lambert G., Lambert W.J., Marques A.C.,
+   Mathieson A.C., McCuller M., Mickiewicz M., Pederson J., Rock-Blake R., 
+   Smith J.P., Sorte C., Stefaniak L., and Wagstaff M. 2013. Report on the 2010 
+   Rapid Assessment Survey of Marine Species at New England Floating Docks and 
+   Rocky Shores. Commonwealth of Massachusetts, Executive Office of Energy and 
+   Environmental Affairs, Office of Coastal Zone Management, Boston, 
+   Massachusetts. 35 pp. 
+   https://www.mass.gov/files/documents/2016/08/ta/ras-2010-final.pdf 
 
-The file 'MarineInvasivesLocationsMaine.csv' was found in the CBEP State of Casco Bay 2015 data archive.
+
+The Word document reporting on the 2007 RAS survey was archived in CBEP's 2015 
+State of the Bay Data Archive, and does not appear to be available online 
+elsewhere. The file 'MarineInvasivesLocationsMaine.csv' was archived in the 
+CBEP State of Casco Bay 2015 data archive.
